@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.springframework.data.splunk.samples</groupId>
+	<artifactId>helloworld</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>helloworld</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<spring.splunk.version>1.0.0.BUILD-SNAPSHOT</spring.splunk.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.data.splunk</groupId>
+			<artifactId>Spring-Splunk-Logging</artifactId>
+			<version>${spring.splunk.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+	</dependencies>
+
+	
+</project>

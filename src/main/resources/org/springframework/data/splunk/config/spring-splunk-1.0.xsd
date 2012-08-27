@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.springframework.org/schema/splunk"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tool="http://www.springframework.org/schema/tool"
+	targetNamespace="http://www.springframework.org/schema/splunk"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified"
+	version="1.0.0.BUILD-SNAPSHOT">
+
+	<xsd:import namespace="http://www.springframework.org/schema/beans" />
+	<xsd:import namespace="http://www.springframework.org/schema/tool" />
+
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[
+Defines the configuration elements for Spring Splunk.
+		]]></xsd:documentation>
+	</xsd:annotation>
+
+	
+	<xsd:element name="server">
+		<xsd:annotation>
+		   <xsd:documentation><![CDATA[
+Defines a Splunk server information.
+				]]></xsd:documentation>	      
+		</xsd:annotation>
+		<xsd:complexType>
+		<xsd:attribute name="host">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+Indicates the Splunk server name or IP address
+			]]></xsd:documentation>
+			<xsd:appinfo>
+				<tool:annotation kind="direct">
+					<tool:expected-type type="java.lang.String" />
+				</tool:annotation>
+			</xsd:appinfo>
+	 	</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="port">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+Indicates the Splunk server port
+			]]></xsd:documentation>
+			<xsd:appinfo>
+				<tool:annotation kind="direct">
+					<tool:expected-type type="java.lang.String" />
+				</tool:annotation>
+			</xsd:appinfo>
+	 	</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userName">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+Indicates the userName to login Splunk server
+			]]></xsd:documentation>
+			<xsd:appinfo>
+				<tool:annotation kind="direct">
+					<tool:expected-type type="java.lang.String" />
+				</tool:annotation>
+			</xsd:appinfo>
+	 	</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="password">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+Indicates the password to login Splunk server
+			]]></xsd:documentation>
+			<xsd:appinfo>
+				<tool:annotation kind="direct">
+					<tool:expected-type type="java.lang.String" />
+				</tool:annotation>
+			</xsd:appinfo>
+	 	</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="scope" type="xsd:string" use="optional" />
+		<xsd:attribute name="id" type="xsd:ID" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

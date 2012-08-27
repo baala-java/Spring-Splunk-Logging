@@ -1,0 +1,30 @@
+description = 'Log4j appender to Splunk with Spring'
+group = "org.springframework.data.splunk"
+
+apply plugin: 'base'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply from: "${rootProject.projectDir}/maven.gradle"
+
+repositories {
+	maven { url "http://repo.springsource.org/libs-snapshot" }
+	maven { url "http://spring-roo-repository.springsource.org/release" }
+}
+
+dependencies {
+	compile "log4j:log4j:$log4jVersion"
+	compile "org.springframework:spring-core:$springVersion"
+	compile "org.springframework:spring-beans:$springVersion"
+	testCompile "junit:junit:$junitVersion"
+	testCompile "org.springframework:spring-test:$springVersion"
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+	description = 'Generates gradlew[.bat] scripts'
+	gradleVersion = '1.0'
+}
+
+defaultTasks 'build'
