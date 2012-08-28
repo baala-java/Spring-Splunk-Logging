@@ -37,18 +37,21 @@ $git clone https://github.com/leejianwei/Spring-Splunk-Logging.git
 
 2. the path where Spring Splunk is stored local is ${spring.splunk.home}
 
-3. change to ${spring.splunk.home}/samples/helloworld
+3. build the project with Gradle
+$ ./gradlew install
+
+4. change to ${spring.splunk.home}/samples/helloworld
 $cd samples/helloworld
 
-4. update "src/main/resources/log4j.properties". 
+5. update "src/main/resources/log4j.properties". 
 Change "log4j.appender.Splunk.host" in "log4j.properties" to the host where
 Splunk is running.
 Change port, userName, password accordingly to login Splunk 
 
-5. run maven command
+6. run maven command
 $mvn -Dspring.splunk.home=${spring.splunk.home} verify
 
-6. In the Splunk server, search "Spring Splunk". 
+7. In the Splunk server, search "Spring Splunk". 
 
 
 
