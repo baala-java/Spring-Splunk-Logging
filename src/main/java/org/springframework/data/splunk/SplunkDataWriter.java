@@ -22,6 +22,8 @@ import com.splunk.Service;
 import org.springframework.data.splunk.model.SplunkServer;
 
 /**
+ * Write data into Splunk.
+ * 
  * @author Jarred Li
  *
  */

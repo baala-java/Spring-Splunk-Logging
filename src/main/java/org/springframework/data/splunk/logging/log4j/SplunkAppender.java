@@ -21,6 +21,18 @@ import org.springframework.data.splunk.SplunkDataWriter;
 import org.springframework.data.splunk.model.SplunkServer;
 
 /**
+ * Appender which write data into Splunk. To use it, add the following into your "log4j.properties".
+ * 
+ * {@code
+log4j.appender.Splunk=org.springframework.data.splunk.logging.log4j.SplunkAppender
+log4j.appender.Splunk.host=${some_host}
+log4j.appender.Splunk.port=8089
+log4j.appender.Splunk.userName=admin
+log4j.appender.Splunk.password=changeme
+log4j.appender.Splunk.layout=org.apache.log4j.PatternLayout
+log4j.appender.Splunk.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
+
+ * }
  * @author Jarred Li
  *
  */

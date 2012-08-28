@@ -24,6 +24,14 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 /**
+ * Splunk server element parser.
+ * 
+ * The XML element is like this:
+ * <pre>
+ * {@code
+ * <splunk:server id="splunkServer" host="host" port="8089" userName="admin" password="password" />
+ * }
+ * 
  * @author Jarred Li
  *
  */

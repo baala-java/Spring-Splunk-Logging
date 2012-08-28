@@ -17,7 +17,6 @@ package org.springframework.data.splunk.samples;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.splunk.model.SplunkServer;
 
 /**
  * @author Jarred Li
@@ -32,9 +31,6 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/context.xml");
-		SplunkServer server = ctx.getBean(SplunkServer.class);
-		System.out.println("host:" + server.getHost());
-		
 		Test test = ctx.getBean("test",Test.class);
 		test.writeLog();
 	}

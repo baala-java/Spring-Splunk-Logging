@@ -18,6 +18,9 @@ package org.springframework.data.splunk.config;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
+ * Namespace handler for Splunk.
+ * @see <code>NamespaceHandlerSupport</code>
+ * 
  * @author Jarred Li
  *
  */
