@@ -12,7 +12,66 @@
 
 	<properties>
 		<spring.splunk.version>1.0.0.BUILD-SNAPSHOT</spring.splunk.version>
+		<spring.splunk.home>/data/Spring-Splunk-Logging</spring.splunk.home>
+		<jar.mainclass>org.springframework.data.splunk.samples.Test</jar.mainclass>
 	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<useUniqueVersions>false</useUniqueVersions>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>${jar.mainclass}</mainClass>
+						</manifest>
+						<manifestEntries>
+							<version>${project.version}</version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>org.springframework.data.splunk.samples.Test</mainClass>
+							<classpathScope>compile</classpathScope>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 
@@ -21,14 +80,30 @@
 			<artifactId>Spring-Splunk-Logging</artifactId>
 			<version>${spring.splunk.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>3.1.2.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.splunk</groupId>
+			<artifactId>splunk</artifactId>
+			<version>0.8</version>
+			<scope>system</scope>
+			<systemPath>${spring.splunk.home}/lib/splunk.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.splunk</groupId>
+			<artifactId>splunk-sdk</artifactId>
+			<version>0.8</version>
+			<scope>system</scope>
+			<systemPath>${spring.splunk.home}/lib/splunk-sdk.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
-	
+
 </project>

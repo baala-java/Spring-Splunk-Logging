@@ -8,6 +8,8 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/splunk http://www.springframework.org/schema/splunk/spring-splunk.xsd">
 
-	<splunk:server id="splunkServer" host="localhost" port="8000" userName="admin" password="changeme" />
+	<splunk:server id="splunkServer" host="10.112.127.51" port="8089" userName="admin" password="password" />
+	
+	<bean id="test" class="org.springframework.data.splunk.samples.Test" />
 	
 </beans>

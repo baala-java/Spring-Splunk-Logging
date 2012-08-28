@@ -15,6 +15,7 @@
  */
 package org.springframework.data.splunk.samples;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.splunk.model.SplunkServer;
 
@@ -24,6 +25,8 @@ import org.springframework.data.splunk.model.SplunkServer;
  */
 public class Test {
 
+	private Logger logger = Logger.getLogger(Test.class);
+	
 	/**
 	 * @param args
 	 */
@@ -31,6 +34,13 @@ public class Test {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/context.xml");
 		SplunkServer server = ctx.getBean(SplunkServer.class);
 		System.out.println("host:" + server.getHost());
+		
+		Test test = ctx.getBean("test",Test.class);
+		test.writeLog();
+	}
+	
+	public void writeLog(){
+		logger.info("Hello, Spring Splunk log4j Appender");
 	}
 
 }

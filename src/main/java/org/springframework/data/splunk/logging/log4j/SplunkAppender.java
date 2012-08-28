@@ -17,6 +17,8 @@ package org.springframework.data.splunk.logging.log4j;
 
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
+import org.springframework.data.splunk.SplunkDataWriter;
+import org.springframework.data.splunk.model.SplunkServer;
 
 /**
  * @author Jarred Li
@@ -24,13 +26,36 @@ import org.apache.log4j.spi.LoggingEvent;
  */
 public class SplunkAppender extends AppenderSkeleton {
 
+	private String host;
+	private int port;
+	private String userName;
+	private String password;
+
+
+	private SplunkServer splunkServer;
+	private SplunkDataWriter dataWriter;
+
+	private boolean initialized = false;
+
+	/**
+	 * 
+	 */
+	public synchronized void init() {
+		splunkServer = new SplunkServer();
+		splunkServer.setHost(host);
+		splunkServer.setPort(port);
+		splunkServer.setUserName(userName);
+		splunkServer.setPassword(password);
+		dataWriter = new SplunkDataWriter(splunkServer);
+		initialized = true;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.apache.log4j.Appender#close()
 	 */
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
-
+		dataWriter.close();
 	}
 
 	/* (non-Javadoc)
@@ -46,8 +71,66 @@ public class SplunkAppender extends AppenderSkeleton {
 	 */
 	@Override
 	protected void append(LoggingEvent event) {
-		// TODO Auto-generated method stub
+		if (!initialized) {
+			init();
+		}
+		dataWriter.write(super.getLayout().format(event));
+	}
 
+	/**
+	 * @return the host
+	 */
+	public String getHost() {
+		return host;
+	}
+
+	/**
+	 * @param host the host to set
+	 */
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	/**
+	 * @return the port
+	 */
+	public int getPort() {
+		return port;
+	}
+
+	/**
+	 * @param port the port to set
+	 */
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
